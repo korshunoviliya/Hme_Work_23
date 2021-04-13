@@ -20,6 +20,10 @@ int main() {
             river >> fishRiver;
             if (catchFish == fishRiver){
                 basket.open ("..\\basket.txt", std::ios::app | std::ios::out);
+                if (!basket.is_open()) {
+                    std::cerr << "File is not open!!!";
+                    exit(1);
+                }
                 basket << fishRiver << "\n";
                 basket.close();
                 catchCounter++;
@@ -37,7 +41,7 @@ int main() {
 
     basket.open ("..\\basket.txt", std::ios::in);
 
-    while (true){
+    while (basket.is_open()){
         basket >> catchFish;
         if (basket.eof()) {
             basket.close();

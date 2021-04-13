@@ -58,8 +58,13 @@ void inputData(std::string name, std::string family, std::string paymentDate, st
     sum = volidationSum(sum);
 
     bill.open ("..\\bill.txt", std::ios::app);
-    bill << name << " " << family << " " << paymentDate << " " << sum << "\n";
-
+    if (bill.is_open()) {
+        bill << name << " " << family << " " << paymentDate << " " << sum << "\n";
+    }
+    else {
+        std::cerr << "File is not open!!!";
+        exit(1);
+    }
     bill.close();
 }
 
